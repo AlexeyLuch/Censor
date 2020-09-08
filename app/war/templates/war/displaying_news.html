@@ -1,0 +1,170 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <title>News  HTML-5 Template </title>
+    <meta name="description" content="">
+
+
+    <!-- CSS here -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/ticker-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Preloader Start -->
+<header>
+    <!-- Header Start -->
+    <div class="header-area">
+        <div class="main-header ">
+            <div class="header-mid gray-bg">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-3 col-lg-3 col-md-3 d-none d-md-block">
+                            <div class="logo">
+                                <a href="index.html"><img src="{{url_for('static', filename='assets/img/logo/logo.png')}}" alt=""></a>
+                            </div>
+                        </div>
+<!--                        <div class="col-xl-9 col-lg-9 col-md-9">-->
+<!--                            <div class="header-banner f-right ">-->
+<!--                                <img src="{{url_for('static', filename='assets/img/gallery/header_card.png')}}" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="header-bottom header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 col-lg-8 col-md-12 header-flex">
+                            <!-- sticky -->
+                            <div class="sticky-logo">
+                                <a href="index.html"><img src="{{url_for('static', filename='assets/img/logo/logo.png')}}" alt=""></a>
+                            </div>
+                            <!-- Main-menu -->
+                            <div class="main-menu d-none d-md-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">about</a></li>
+                                        <li><a href="categori.html">Category</a></li>
+                                        <li><a href="latest_news.html">Latest News</a></li>
+                                        <li><a href="#">Pages</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">Blog</a></li>
+                                                <li><a href="blog_details.html">Blog Details</a></li>
+                                                <li><a href="elements.html">Element</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4">
+                            <div class="header-right f-right d-none d-lg-block">
+                                <!-- Heder social -->
+                                <ul class="header-social">
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li> <a href="#"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                                <!-- Search Nav -->
+                                <div class="nav-search search-switch">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
+
+{% for post in pages.items %}
+<p>
+        {{ post.title }}
+
+    <b>{{ post.body }}</b>
+</p>
+{% endfor %}
+<nav>
+  <ul class="pagination">
+      {%if not pages.has_prev%}<li class="page-item disabled"> {%endif%}
+      <a class="page-link" href="news?page={{pages.prev_num}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+      {%for page in pages.iter_pages()%}
+      {%if page==pages.page%}<li class="page-item active">{%endif%}
+          <a class="page-link" href="news?page={{page}}">{{page}}</a></li>
+      {%endfor%}
+    {%if not pages.has_next%}<li class="page-item disabled"> {%endif%}
+      <a class="page-link" href="news?page={{pages.next_num}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+    <script src="{{ url_for('static', filename='./assets/js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{{ url_for('static', filename='./assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/bootstrap.min.js') }}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{{ url_for('static', filename='./assets/js/jquery.slicknav.min.js') }}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{{ url_for('static', filename='./assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/slick.min.js') }}"></script>
+    <!-- Date Picker -->
+    <script src="{{ url_for('static', filename='./assets/js/gijgo.min.js') }}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{{ url_for('static', filename='./assets/js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/animated.headline.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/jquery.magnific-popup.js') }}"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="{{ url_for('static', filename='./assets/js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/jquery.sticky.js') }}"></script>
+
+    <!-- contact js -->
+    <script src="{{ url_for('static', filename='./assets/js/contact.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/jquery.form.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/mail-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/jquery.ajaxchimp.min.js') }}"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="{{ url_for('static', filename='./assets/js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='./assets/js/main.js') }}"></script>
+
+</body>
+</html>
+
+

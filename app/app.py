@@ -1,28 +1,27 @@
 from flask import Flask, redirect, request, url_for
 from config import Configuration
 
-from war.blueprint import war
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate, MigrateCommand
-# from flask_script import Manager
-#
-# from flask_admin import Admin, AdminIndexView
-# from flask_admin.contrib.sqla import ModelView
-#
-# from flask_security import SQLAlchemyUserDatastore,Security,current_user
+
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
+
+from flask_admin import Admin, AdminIndexView
+from flask_admin.contrib.sqla import ModelView
+
+from flask_security import SQLAlchemyUserDatastore,Security,current_user
 
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
-app.register_blueprint(war,url_prefix='/war')
-# db = SQLAlchemy(app)
-#
-# migrate = Migrate(app,db)
-# manager = Manager(app)
-# manager.add_command('db',MigrateCommand)
-#
-# ### ADMIN ###
+db = SQLAlchemy(app)
+
+migrate = Migrate(app,db)
+manager = Manager(app)
+manager.add_command('db',MigrateCommand)
+
+### ADMIN ###
 # from models import *
 #
 # class AdminMixin:
