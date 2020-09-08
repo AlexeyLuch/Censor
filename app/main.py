@@ -1,9 +1,9 @@
 from app import app
-# from app import db
+from app import db
+from war.blueprint import war
 import view
-# from posts.blueprint import posts
 
-# app.register_blueprint(posts,url_prefix="/war")
+app.register_blueprint(war,url_prefix="/war")
 
 if __name__ == '__main__':
     app.run()
