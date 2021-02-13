@@ -1,11 +1,9 @@
 from flask import Flask, redirect, request, url_for
 from config import Configuration
-
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-
+from celery import Celery
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 
@@ -15,11 +13,21 @@ from flask_security import SQLAlchemyUserDatastore,Security,current_user
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
 db = SQLAlchemy(app)
 
 migrate = Migrate(app,db)
 manager = Manager(app)
 manager.add_command('db',MigrateCommand)
+
+
+@celery.task
+def my_background_task(a, b):
+    c = a+b
+    print("done")
+    return c
+
 
 ### ADMIN ###
 # from models import *

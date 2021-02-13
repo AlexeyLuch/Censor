@@ -9,5 +9,7 @@ class Configuration(object):
     SECURITY_PASSWORD_HASH = 'sha512_crypt'
     UPLOADS_DEFAULT_DEST = 'static/images'
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+    CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 

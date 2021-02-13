@@ -12,12 +12,15 @@ def slugify(s):
 #                         db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
 # )
 
+
+
 class War(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(140))
+    title = db.Column(db.String(1140))
+    description = db.Column(db.String(11440))
     body = db.Column(db.Text)
-    image = db.Column(db.String(40),nullable=False,default='default.jpg')
-    slug = db.Column(db.String(140), unique=True)
+    image = db.Column(db.String(590),nullable=False,default='default.jpg')
+    slug = db.Column(db.String(1140), unique=True)
     created = db.Column(db.DateTime, default=datetime.now())
 
     def __init__(self, *args, **kwargs):

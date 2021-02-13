@@ -4,11 +4,13 @@
             Blueprint Index page
         {%endblock%}
 
-         {%block content_title%}
-            Blueprint Index pag123123123e
-        {%endblock%}
 
-         {%block content%}
+         {%block main%}
+<div>
+    <h1>News </h1>
+
+</div>
+
 <div class="col-md-6">
     <form action="{{url_for('war.create_news')}}" method="post" enctype="multipart/form-data">
         {% for field in form%}

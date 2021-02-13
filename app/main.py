@@ -1,5 +1,4 @@
-from app import app
-from app import db
+from app import app,db
 from war.blueprint import war
 import view
 
